@@ -12,3 +12,10 @@ app.use(cors({
 
 app.listen(PORT)
     console.log("Application is running on PORT " + PORT);
+
+//import routes
+const userRouter = require("./routes/Users_Routes");
+
+//use routes
+app.use(userRouter.routes());
+app.use(userRouter.allowedMethods());

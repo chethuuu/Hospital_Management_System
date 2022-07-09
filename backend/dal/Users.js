@@ -1,5 +1,4 @@
-const User = require('./Connection')
-            .db("Hospital_System").collection('Users')
+const User = require('./Connection').db("Hospital_System").collection('Users')
 
 const ObjectId = require('mongodb').ObjectId;
 
@@ -22,6 +21,26 @@ const RegisterUser = async (allData) => {
     return user;
 }
 
+const LoginUser = async (data) => {
+    let user = await User.findOne({"email":data.email});
+    if(user)
+    {
+        let pwd =  bcrypt.compare(user.password,data.password);
+        if(pwd)
+        {
+            return {msg:"Login sucess",token:user._id,userRole:user.userRole}
+        }
+        else
+        {
+            return {msg:"login failed"}
+        }
+    }
+    else
+    {
+        return {msg:"login failed"}
+    }
+}
+
 const getAllUser = async () => {
     let result = await User.find();
     return result.toArray();
@@ -32,7 +51,7 @@ const getByID = async (id) => {
     return result;
 }
 
-const updateUser = async (id) => {
+const updateUser = async (id, data) => {
     let result = await User.replaceOne({_id:ObjectId(id)},data);
     return result;
 }
@@ -42,4 +61,4 @@ const deleteUser = async(id) => {
     return result;
 }
 
-module.exports = {RegisterUser, getAllUser, getByID, updateUser, deleteUser}
+module.exports = {RegisterUser, LoginUser, getAllUser, getByID, updateUser, deleteUser}

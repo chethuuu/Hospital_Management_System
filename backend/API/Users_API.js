@@ -1,6 +1,7 @@
 const 
     {
         RegisterUser,
+        LoginUser,
         getAllUser,
         getByID,
         updateUser,
@@ -9,6 +10,11 @@ const
 
 const Register = async (data) => {
     let result = await RegisterUser(data);
+    return result;
+}
+
+const Login = async (data) => {
+    let result = await LoginUser(data);
     return result;
 }
 
@@ -22,7 +28,7 @@ const GetID = async (id) => {
     return result;
 }
 
-const Update = async (id) => {
+const Update = async (id, data) => {
     let result = await updateUser(id, data);
     return result;
 }
@@ -32,4 +38,4 @@ const Remove = async (id) => {
     return result;
 }
 
-module.exports = {Register, Get, GetID, Update, Remove}
+module.exports = {Register, Login, Get, GetID, Update, Remove}
