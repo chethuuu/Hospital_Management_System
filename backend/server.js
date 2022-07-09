@@ -7,7 +7,7 @@ const PORT =  5000;
 
 app.use(bodyparser())
 app.use(cors({
-    origin:""
+    origin:"http://localhost:1234"
 }))
 
 app.listen(PORT)
