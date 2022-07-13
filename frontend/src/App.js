@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -16,12 +16,19 @@ import Contact from './Components/Home/Contact';
 import Service from './Components/Home/Service';
 
 const App = () => {
+  const [token, settoken] = useState(null);
+
+  useEffect(() => {
+    settoken(localStorage.getItem("token"));
+  }, [])
+
+
   return (
     <div>
       <Router>
-        <Navbar />
+        {token !== null ? <Navbar /> : <></>}
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={token !== null ? <Home/> : <Login/>} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/about" element={<About />} />
