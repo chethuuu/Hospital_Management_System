@@ -12,7 +12,7 @@ const Navbar = () => {
         setuserRole(localStorage.getItem("userRole"));
     }, [])
 
-    const LogOutfunc = (e) => {
+    const LogOut = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
         localStorage.removeItem("userRole");
@@ -45,27 +45,30 @@ const Navbar = () => {
                                 <li class="nav-item">
                                     <Link class="nav-link active" to="/"> Hospital </Link>
                                 </li>
-                                <li>
+                                <li class="nav-item">
                                     <a href="/admin" style={{ display: userRole === "admin" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Admin </button></a>
                                     <a href="/student" style={{ display: userRole === "Student" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Student </button></a>
                                 </li>
                             </ul>
-                            <Link class="nav-link active navbar-brand mx-auto fw-bolder fs-2" to="/">
 
-                            </Link>
-                            <li><Link className="btn btn-outline-primary ms-2 px-4 rounded-pill" to="/login">Login <i className="fa fa-sign-in me-2" /> </Link></li>
+                            <li class="nav-item">
+                                <Link className="btn btn-outline-primary ms-2 px-4 rounded-pill" to="/login">
+                                    Login <i className="fa fa-sign-in me-2" />
+                                </Link>
+                            </li>
 
-                            <NavLink to="/register"> <button className="btn btn-outline-primary ms-2 px-4 rounded-pill">
-                                Register <i className="fa fa-user-plus me-2" />
-                            </button> </NavLink>
+                            <NavLink to="/register">
+                                <button className="btn btn-outline-primary ms-2 px-4 rounded-pill">
+                                    Register <i className="fa fa-user-plus me-2" />
+                                </button>
+                            </NavLink>
                             <li>
                                 <a href="/current-user" style={{ display: userRole !== null ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Profile</button></a>
-
                             </li>
                             <li>
                                 <button className="btn btn-outline-primary ms-2 px-4 rounded-pill"
                                     style={{ display: userRole !== null ? "flex" : "none", float: "left" }}
-                                    onClick={(e) => LogOutfunc(e)}>Log Out <i className="fa fa-sign-out me-2" />
+                                    onClick={(e) => LogOut(e)}>Log Out <i className="fa fa-sign-out me-2" />
                                 </button>
                             </li>
                         </div>

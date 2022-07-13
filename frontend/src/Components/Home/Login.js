@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [data, setData] = useState({
         email: "",
         passowrd: ""
     });
+
+    const navigate = useNavigate();
 
     const { email, password } = data;
 
@@ -22,6 +25,7 @@ const Login = () => {
             localStorage.setItem("token", user?.data?.token);
             localStorage.setItem("userRole", user?.data?.userRole);
             window.location.reload();
+            navigate("/")
         }
         else {
             alert("Login is Failed");
