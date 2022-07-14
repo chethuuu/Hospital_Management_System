@@ -33,7 +33,7 @@ router.get('/getid/:id', async (ctx) => {
     ctx.body = data;
 });
 
-router.put('/update/:id', async (ctx) => {
+router.put('/:id', async (ctx) => {
     let id = ctx.params.id;
     let body = ctx.request.body;
     let data = await Update(id, body);
