@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from "react-router";
+import { NavLink } from 'react-router-dom';
 
-const UpdateStaff = () => {
+const ViewStaffbyOne = () => {
     const [data, setStaff] = useState({
         PID: "",
         Pname: "",
@@ -12,6 +13,7 @@ const UpdateStaff = () => {
         bday: "",
         age: "",
         blood: "",
+        password: "",
         userRole: "",
         address: ""
     })
@@ -32,40 +34,18 @@ const UpdateStaff = () => {
         getStaff();
     }, []);
 
-    function sendData(e) {
-        e.preventDefault();
-        const updateStaff = data;
-        axios.put(`http://localhost:5000/hospital/${id}`, updateStaff)
-            .then(() => {
-                alert('Updated Successfully')
-            })
-            .catch((err) => {
-                alert(err)
-            })
-    }
-
-    function onChangeData(e) {
-        const { name, value } = e.target;
-        setStaff((preValue) => {
-            return {
-                ...preValue,
-                [name]: value
-            }
-        })
-    }
-
 
     return (
         <div>
             <div className="container shadow my-5"> <br />
-                <h1 className="display-6 fw-bolder mb-5 text-center"> User Registration</h1>
+                <h1 className="display-6 fw-bolder mb-5 text-center"> {data.Pname}'s Profile </h1>
                 <div className='row'>
                     <div className="col-md-5 d-flex flex-column align-items-center text-dark justify-content-center form order-2">
                         img
                     </div>
 
                     <div className="col-md-6 p-5">
-                        <form onSubmit={sendData}>
+                        <form>
                             <div className='row py-2'>
                                 <div class="col-md-6">
                                     <label for="text" class="form-label">User ID</label>
@@ -125,7 +105,6 @@ const UpdateStaff = () => {
                                     <textarea type='password' class="form-control" name='address' value={data.address} placeholder='Enter Address' onChange={(e) => onChangeData(e)} required />
                                 </div>
                             </div> <br />
-                            <button type="submit" class="btn btn-primary w-100 rounded-pill">Update User</button>
                         </form>
                     </div>
                 </div>
@@ -134,4 +113,4 @@ const UpdateStaff = () => {
     )
 }
 
-export default UpdateStaff
+export default ViewStaffbyOne
