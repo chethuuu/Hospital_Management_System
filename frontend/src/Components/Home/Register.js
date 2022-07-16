@@ -7,13 +7,20 @@ const Register = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState({
-        name: "",
+        PID: "",
+        Pname: "",
+        regdate: "",
         email: "",
+        number: "",
+        bday: "",
+        age: "",
+        blood: "",
         password: "",
-        userRole: ""
+        userRole: "",
+        address: ""
     });
 
-    const { name, email, password, userRole } = data;
+    const { PID, Pname, regdate, email, number, bday, age, blood, password, userRole, address } = data;
 
     const onChangeData = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
@@ -34,36 +41,74 @@ const Register = () => {
 
     return (
         <div>
-            <div className="container shadow my-5">
-                <div className="row">
-                    <div className="col-md-5 d-flex flex-column align-items-center text-dark justify-content-center form">
-                        <br />
-                        <img src="https://thumbs.dreamstime.com/b/portrait-medical-doctor-posing-16974048.jpg"
-                            alt="login form" class="img-fluid reg_img" />
+            <div className="container shadow my-5"> <br />
+                <h1 className="display-6 fw-bolder mb-5 text-center"> User Registration</h1>
+                <div className='row'>
+                    <div className="col-md-5 d-flex flex-column align-items-center text-dark justify-content-center form order-2">
+                        img
                     </div>
+
                     <div className="col-md-6 p-5">
-                        <h1 className="display-6 fw-bolder mb-5 text-center"> User Registration</h1>
                         <form>
-                            <div class="mb-3">
-                                <label for="text" class="form-label">Name</label>
-                                <input type='text' class="form-control" name='name' value={name} placeholder='Enter Your Name' onChange={(e) => onChangeData(e)} />
+                            <div className='row py-2'>
+                                <div class="col-md-6">
+                                    <label for="text" class="form-label">User ID</label>
+                                    <input type='text' class="form-control" name='PID' value={data.PID} placeholder='Enter User ID' onChange={(e) => onChangeData(e)} />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="text" class="form-label">User Name</label>
+                                    <input type='text' class="form-control" name='Pname' value={data.Pname} placeholder='Enter User Name' onChange={(e) => onChangeData(e)} required />
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="text" class="form-label">Email address</label>
-                                <input type='email' class="form-control" name='email' value={email} placeholder='Enter your E-mail' onChange={(e) => onChangeData(e)} required />
+
+                            <div className='row py-2'>
+                                <div class="col-md-6">
+                                    <label for="text" class="form-label">Registration Date</label>
+                                    <input type="datetime-local" id="birthdaytime" name="regdate" class="form-control" value={data.regdate} placeholder='Enter Registration Date' onChange={(e) => onChangeData(e)} required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="text" class="form-label">E-mail Address</label>
+                                    <input type='text' class="form-control" name='email' value={data.email} placeholder='Enter E-mail Address' onChange={(e) => onChangeData(e)} required />
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="text" class="form-label">Password</label>
-                                <input type='password' class="form-control" name='password' value={password} placeholder='Enter Password' onChange={(e) => onChangeData(e)} required />
+
+                            <div className='row py-2'>
+                                <div class="col-md-4">
+                                    <label for="text" class="form-label">Phone Number</label>
+                                    <input type='text' class="form-control" name='number' value={data.number} placeholder='Enter Phone Number' onChange={(e) => onChangeData(e)} required />
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="text" class="form-label"> Birthday </label>
+                                    <input type="datetime-local" id="birthdaytime" class="form-control" name='bday' value={data.bday} placeholder='Enter User Birthday' onChange={(e) => onChangeData(e)} required />
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="text" class="form-label">Age</label>
+                                    <input type='number' class="form-control" name='age' value={data.age} placeholder='Enter Age' onChange={(e) => onChangeData(e)} required />
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="text" class="form-label">User Role</label>
-                                <input type='text' class="form-control" name='userRole' value={userRole} placeholder='Enter your User Role' onChange={(e) => onChangeData(e)} required />
+
+                            <div className='row py-2'>
+                                <div class="col-md-4">
+                                    <label for="text" class="form-label"> Blood Group </label>
+                                    <input type='text' class="form-control" name='blood' value={data.blood} placeholder='Enter Blood Group' onChange={(e) => onChangeData(e)} required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="text" class="form-label"> Password </label>
+                                    <input type='password' class="form-control" name='password' value={data.password} placeholder='Enter Password' onChange={(e) => onChangeData(e)} required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="text" class="form-label">User Role</label>
+                                    <input type='text' class="form-control" name='userRole' value={data.userRole} placeholder='Enter User Role' onChange={(e) => onChangeData(e)} required />
+                                </div>
+
                             </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                <label class="form-check-label" for="exampleCheck1">I Agree with all the terms & Conditions</label>
-                            </div>
+
+                            <div className='row py-2'>
+                                <div class="col-md-12">
+                                    <label for="text" class="form-label">Address</label>
+                                    <textarea type='password' class="form-control" name='address' value={data.address} placeholder='Enter Address' onChange={(e) => onChangeData(e)} required />
+                                </div>
+                            </div> <br />
                             <button type="submit" class="btn btn-primary w-100 rounded-pill" onClick={(e) => RegisterUser(e)}>Register User</button>
                         </form>
                     </div>
