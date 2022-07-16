@@ -1,22 +1,21 @@
-const User = require('./Connection').db("Hospital_System").collection('Users')
+const Patient = require('./Connection').db("Hospital_System").collection('Patient')
 
 const ObjectId = require('mongodb').ObjectId;
 
 const bcrypt = require('bcrypt')
 
-//Register user
-const RegisterUser = async (allData) => {
+//Register Patient
+const RegisterPatient = async (allData) => {
     var data = {
         PID:allData.PID,
-        Pname:allData.Pname,
         regdate:allData.regdate,
+        Pname:allData.Pname,
         email:allData.email,
         number:allData.number,
         bday:allData.bday,
         age:allData.age,
         blood:allData.blood,
-        password:allData.password,
-        userRole:allData.userRole,
+        city:allData.city,
         address:allData.address
     }
 
@@ -24,12 +23,12 @@ const RegisterUser = async (allData) => {
     let salt = await bcrypt.genSalt()
     let hash = await bcrypt.hash(pwd,salt);
     data.password = hash;
-    let user = await User.insertOne(data);
+    let user = await Patient.insertOne(data);
     return user;
 }
 
 const LoginUser = async (data) => {
-    let user = await User.findOne({"email":data.email});
+    let user = await Patient.findOne({"email":data.email});
     if(user)
     {
         let pwd =  bcrypt.compare(user.password,data.password);
@@ -68,9 +67,4 @@ const deleteUser = async(id) => {
     return result;
 }
 
-const getUserRole = async () => {
-    let result = await User.find();
-    return result.toArray();
-}
-
-module.exports = {RegisterUser, LoginUser, getAllUser, getByID, updateUser, deleteUser, getUserRole}
+module.exports = {RegisterUser, LoginUser, getAllUser, getByID, updateUser, deleteUser}
