@@ -18,6 +18,10 @@ import AdminHome from './Components/Admin/AdminHome';
 import RegPatients from './Components/Admin/RegPatients';
 import AllStaff from './Components/Admin/AllStaff';
 import UpdateStaff from './Components/Admin/UpdateStaff';
+import ViewStaffbyOne from './Components/Admin/ViewStaffbyOne';
+import PatientHome from './Components/Patient/PatientHome';
+import DoctorHome from './Components/Doctor/DoctorHome';
+import NurseHome from './Components/Nurse/NurseHome';
 
 const App = () => {
 
@@ -33,10 +37,13 @@ const App = () => {
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/service" element={<Service />} />
           <Route exact path="/admin" element={<AdminHome />} />
+          <Route exact path="/patient" element={<PatientHome />} />
+          <Route exact path="/doctor" element={<DoctorHome />} />
+          <Route exact path="/nurse" element={<NurseHome />} />
           <Route exact path="/reg_patient" element={<RegPatients />} />
           <Route exact path="/allstaff" element={<AllStaff />} />
           <Route exact path="/updatestaff/:id" element={<UpdateStaff />} />
-          <Route exact path="/reg_patient" element={<RegPatients />} />
+          <Route exact path="/viewstaff/:id" element={<ViewStaffbyOne />} />
           <Route exact path="/reg_patient" element={<RegPatients />} />
           <Route exact path="/reg_patient" element={<RegPatients />} />
         </Routes>
