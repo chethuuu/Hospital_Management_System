@@ -1,7 +1,7 @@
 const Router = require('@koa/router');
 
 const {
-        Register, Login, Get, GetID, Update, Remove
+        Register, Login, Get, GetID, Update, Remove, UserRole
     } = require ('../API/Users_API');
 
 const router = new Router ({prefix:'/hospital'});
@@ -44,6 +44,13 @@ router.put('/:id', async (ctx) => {
 router.delete('/:id', async (ctx) => {
     let id = ctx.params.id;
     let data = await Remove(id);
+    ctx.response.status = 200;
+    ctx.body = data;
+});
+
+router.get('/:userRole', async (ctx) => {
+    let userRole = ctx.params.userRole;
+    let data = await UserRole.find({ userRole: userRole });;
     ctx.response.status = 200;
     ctx.body = data;
 });

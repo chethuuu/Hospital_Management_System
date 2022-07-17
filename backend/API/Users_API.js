@@ -5,7 +5,8 @@ const
         getAllUser,
         getByID,
         updateUser,
-        deleteUser
+        deleteUser,
+        getUserRole
     } = require ('../dal/Users');
 
 const Register = async (data) => {
@@ -38,4 +39,9 @@ const Remove = async (id) => {
     return result;
 }
 
-module.exports = {Register, Login, Get, GetID, Update, Remove}
+const UserRole = async (userRole) => {
+    let result = await getUserRole(userRole);
+    return result;
+}
+
+module.exports = {Register, Login, Get, GetID, Update, Remove, UserRole}

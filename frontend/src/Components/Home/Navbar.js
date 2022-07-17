@@ -47,7 +47,9 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <a href="/admin" style={{ display: userRole === "Admin" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Admin </button></a>
-                                    <a href="/student" style={{ display: userRole === "Student" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Student </button></a>
+                                    <a href="/student" style={{ display: userRole === "Patient" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Patient </button></a>
+                                    <a href="/doctor" style={{ display: userRole === "Doctor" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Doctor </button></a>
+                                    <a href="/nurse" style={{ display: userRole === "Nurse" ? "flex" : "none", float: "left", marginLeft: "5px" }}><button className="btn btn-outline-primary ms-2 px-4 rounded-pill">Nurse </button></a>
                                 </li>
                             </ul>
                             <Link class="nav-link active navbar-brand mx-auto fw-bolder fs-2" to="/">

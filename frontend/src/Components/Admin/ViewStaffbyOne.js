@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate, NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useParams } from "react-router";
+import { NavLink } from 'react-router-dom';
 
-const Register = () => {
-
-    const navigate = useNavigate();
-
-    const [data, setData] = useState({
+const ViewStaffbyOne = () => {
+    const [data, setStaff] = useState({
         PID: "",
         Pname: "",
         regdate: "",
@@ -18,31 +16,29 @@ const Register = () => {
         password: "",
         userRole: "",
         address: ""
-    });
+    })
 
-    const { PID, Pname, regdate, email, number, bday, age, blood, password, userRole, address } = data;
+    const { id } = useParams();
 
-    const onChangeData = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value })
-    }
-
-    const RegisterUser = async (e) => {
-        e.preventDefault();
-        let user = await axios.post("http://localhost:5000/hospital/register", data);
-        console.log(user);
-        if (user?.data?.acknowledged === true) {
-            alert("Your Registration Success");
-            navigate('/');
+    useEffect(() => {
+        function getStaff() {
+            axios
+                .get(`http://localhost:5000/hospital/getid/${id}`)
+                .then((res) => {
+                    setStaff(res.data)
+                })
+                .catch((err) => {
+                    alert(err.message)
+                })
         }
-        else {
-            alert("Your Registration Failed");
-        }
-    }
+        getStaff();
+    }, []);
+
 
     return (
         <div>
             <div className="container shadow my-5"> <br />
-                <h1 className="display-6 fw-bolder mb-5 text-center"> User Registration</h1>
+                <h1 className="display-6 fw-bolder mb-5 text-center"> {data.Pname}'s Profile </h1>
                 <div className='row'>
                     <div className="col-md-5 d-flex flex-column align-items-center text-dark justify-content-center form order-2">
                         img
@@ -109,7 +105,6 @@ const Register = () => {
                                     <textarea type='password' class="form-control" name='address' value={data.address} placeholder='Enter Address' onChange={(e) => onChangeData(e)} required />
                                 </div>
                             </div> <br />
-                            <button type="submit" class="btn btn-primary w-100 rounded-pill" onClick={(e) => RegisterUser(e)}>Register User</button>
                         </form>
                     </div>
                 </div>
@@ -118,4 +113,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default ViewStaffbyOne
